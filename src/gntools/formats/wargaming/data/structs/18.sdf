@@ -1,0 +1,25 @@
+=
+h	tankdata/version
+l	tankdata/lastBattleTime
+l	tankdata/battleLifeTime
+b	tankdata/maxFrags
+l	tankdata/xp
+h	tankdata/maxXP
+l	tankdata/battlesCount
+l	tankdata/wins
+l	tankdata/losses
+l	tankdata/survivedBattles
+l	tankdata/winAndSurvived
+l	tankdata/frags
+l	tankdata/frags8p
+l	tankdata/fragsBeast
+l	tankdata/shots
+l	tankdata/hits
+l	tankdata/spotted
+l	tankdata/damageDealt
+l	tankdata/damageReceived
+h	tankdata/treesCut
+l	tankdata/capturePoints
+l	tankdata/droppedCapturePoints
+59x
+h	structure/fragspos

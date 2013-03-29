@@ -1,0 +1,294 @@
+  key icon                       shorttitle    title                   country tanktype tier
+  int str                        str           str                     str       str     int
+----- -------------------------- ------------- ----------------------- ------- -------- ----
+    1 t_34                       T-34          T-34                    USSR       MT       5
+   17 pziv                       PzIV          PzKpfw IV               Germany    MT       5
+   33 t14                        T14           T14                     USA        HT       5
+   49 ch01_type59                Type 59       Type 59                 China      MT       8
+   81 gb01_medium_mark_i         Medium I      Vickers Medium Mk. I    UK         LT       1
+  257 su_85                      SU-85         SU-85                   USSR       TD       5
+  273 hummel                     Hummel        Hummel                  Germany   SPG       5
+  289 m3_stuart                  M3 Stuart     M3 Stuart               USA        LT       3
+  305 ch02_type62                Type 62       Type 62                 China      LT       7
+  321 d2                         D2            D2                      France     MT       3
+  337 gb05_vickers_medium_mk_ii  Medium II     Vickers Medium Mk. II   UK         MT       2
+  513 is                         IS            IS                      USSR       HT       7
+  529 pzvi                       Tiger         PzKpfw VI Tiger         Germany    HT       7
+  545 t1_cunningham              T1            T1 Cunningham           USA        LT       1
+  561 ch01_type59_gold           Type 59 G     Type 59 G               China      MT       8
+  577 renaultft                  FT-17         RenaultFT               France     LT       1
+  769 bt_7                       BT-7          BT-7                    USSR       LT       3
+  785 pz35t                      Pz35t         PzKpfw 35 (t)           Germany    LT       2
+  801 m6                         M6            M6                      USA        HT       6
+  817 ch03_wz_111                WZ-111        WZ-111                  China      HT       8
+  833 renaultbs                  BS            RenaultBS               France    SPG       2
+  849 gb07_matilda               Matilda       Matilda                 UK         MT       4
+ 1025 bt_2                       BT-2          BT-2                    USSR       LT       2
+ 1041 stugiii                    StuGIII       StuG III                Germany    TD       5
+ 1057 m4_sherman                 M4            M4 Sherman              USA        MT       5
+ 1073 ch04_t34_1                 T-34-1        T-34-1                  China      MT       7
+ 1089 b1                         B1            B1                      France     HT       4
+ 1105 gb21_cromwell              Cromwell      Cromwell                UK         MT       6
+ 1281 kv                         KV            KV                      USSR       HT       5
+ 1297 pzv                        Panther       PzKpfw V Panther        Germany    MT       7
+ 1313 m4a3e8_sherman             M4A3E8        M4A3E8 Sherman          USA        MT       6
+ 1329 ch06_renault_nc31          NC-31         Renault NC-31           China      LT       1
+ 1345 hotchkiss_h35              H35           Hotchkiss H35           France     LT       2
+ 1537 t_28                       T-28          T-28                    USSR       MT       4
+ 1553 jagdpziv                   JagdPzIV      JagdPz IV               Germany    TD       6
+ 1569 t20                        T20           T20                     USA        MT       7
+ 1585 ch05_t34_2                 T-34-2        T-34-2                  China      MT       8
+ 1601 d1                         D1            D1                      France     LT       2
+ 1793 s_51                       S-51          S-51                    USSR      SPG       6
+ 1809 hetzer                     Hetzer        Hetzer                  Germany    TD       4
+ 1825 m2_lt                      M2 Light      M2 Light Tank           USA        LT       2
+ 1841 ch18_wz_120                WZ-120        WZ-120                  China      MT       9
+ 2049 a_20                       A-20          A-20                    USSR       LT       4
+ 2065 pzii                       PzII          PzKpfw II               Germany    LT       2
+ 2081 t57                        T57           T57                     USA       SPG       2
+ 2097 ch12_111_1_2_3             WZ-111 1-4    WZ-111 model 1-4        China      HT       9
+ 2113 _105_lefh18b2              leFH18B2      105 leFH18B2            France    SPG       4
+ 2129 gb20_crusader              Crusader      Crusader                UK         LT       5
+ 2305 su_152                     SU-152        SU-152                  USSR       TD       7
+ 2321 vk3601h                    VK3601H       VK 3601 (H)             Germany    MT       6
+ 2337 t23                        T23           T23                     USA        MT       8
+ 2353 ch07_vickers_mke_type_bt26 VAE Type B    Vickers Mk. E Type B    China      LT       2
+ 2369 fcm_36pak40                FCM36P40      FCM36 PaK40             France     TD       3
+ 2385 gb06_vickers_medium_mk_iii Medium III    Vickers Medium Mk. III  UK         MT       3
+ 2561 t_34_85                    T-34-85       T-34-85                 USSR       MT       6
+ 2577 vk3001h                    VK3001H       VK 3001 (H)             Germany    MT       6
+ 2593 t30                        T30           T30                     USA        TD       9
+ 2625 arl_44                     ARL 44        ARL 44                  France     HT       6
+ 2817 kv_1s                      KV-1S         KV-1S                   USSR       HT       6
+ 2833 bison_i                    Bison         Sturmpanzer I Bison     Germany   SPG       2
+ 2849 t34_hvy                    T34           T34                     USA        HT       8
+ 2865 ch11_110                   110           110                     China      HT       8
+ 2881 amx40                      AMX 40        AMX 40                  France     LT       4
+ 2897 gb08_churchill_i           Churchill I   Churchill I             UK         HT       5
+ 3073 t_46                       T-46          T-46                    USSR       LT       3
+ 3089 ltraktor                   LTraktor      Leichttraktor           Germany    LT       1
+ 3105 m3_grant                   M3 Lee        M3 Lee                  USA        MT       4
+ 3121 ch09_m5                    M5A1 Stuart   M5A1 Stuart             China      LT       4
+ 3137 amx_50_100                 AMX50 100     AMX 50 100              France     HT       8
+ 3153 gb10_black_prince          Black Prince  Black Prince            UK         HT       7
+ 3329 ms_1                       MS-1          MS-1                    USSR       LT       1
+ 3345 pz38t                      Pz38t         PzKpfw 38 (t)           Germany    LT       3
+ 3361 t1_hvy                     T1 Heavy      T1 Heavy Tank           USA        HT       5
+ 3377 ch16_wz_131                WZ-131        WZ-131                  China      LT       7
+ 3393 lorraine39_l_am            Lorr.39LAM    Lorraine39 L AM         France    SPG       3
+ 3585 su_100                     SU-100        SU-100                  USSR       TD       6
+ 3601 panzerjager_i              PzJg I        Panzerjaeger I          Germany    TD       2
+ 3617 m7_priest                  M7 Priest     M7 Priest               USA       SPG       4
+ 3633 ch10_is2                   IS-2          IS-2                    China      HT       7
+ 3649 bat_chatillon25t           BatChat.25t   Bat Chatillon 25 t      France     MT      10
+ 3841 su_18                      SU-18         SU-18                   USSR      SPG       2
+ 3857 jagdpanther                JgPanther     Jagdpanther             Germany    TD       7
+ 3873 t29                        T29           T29                     USA        HT       7
+ 3889 ch17_wz131_1_wz132         WZ-132        WZ-132                  China      LT       8
+ 3905 amx_50_120                 AMX50 120     AMX 50 120              France     HT       9
+ 3921 gb11_caernarvon            Caernarvon    Caernarvon              UK         HT       8
+ 4097 su_14                      SU-14         SU-14                   USSR      SPG       6
+ 4113 vk3002db                   VK3002DB      VK 3002 (DB)            Germany    MT       7
+ 4129 m41                        M41           M41                     USA       SPG       5
+ 4145 ch19_121                   121           121                     China      MT      10
+ 4161 amx_105am                  AMX105AM      AMX 105AM               France    SPG       4
+ 4353 t_44                       T-44          T-44                    USSR       MT       8
+ 4369 pziii                      PzIII         PzKpfw III              Germany    MT       4
+ 4385 t32                        T32           T32                     USA        HT       8
+ 4401 ch08_type97_chi_ha         Chi-Ha        Type 2597 Chi-Ha        China      LT       3
+ 4433 gb12_conqueror             Conqueror     Conqueror               UK         HT       9
+ 4609 t_26                       T-26          T-26                    USSR       LT       2
+ 4625 sturmpanzer_ii             StPz II       Sturmpanzer II          Germany   SPG       3
+ 4641 m37                        M37           M37                     USA       SPG       3
+ 4657 ch21_t34                   Type T-34     Type T-34               China      MT       5
+ 4673 amx_13f3am                 AMX 13F3      AMX 13 F3 AM            France    SPG       5
+ 4689 gb09_churchill_vii         Churchill VII Churchill VII           UK         HT       6
+ 4865 su_5                       SU-5          SU-5                    USSR      SPG       4
+ 4881 pziii_a                    PzIII A       PzKpfw III Ausf. A      Germany    LT       3
+ 4897 m2_med                     M2 Medium     M2 Medium Tank          USA        MT       3
+ 4913 ch15_59_16                 59-16         59-16                   China      LT       6
+ 4929 amx_13_90                  AMX 13 90     AMX 13 90               France     LT       8
+ 4945 gb04_valentine             Valentine     Valentine               UK         LT       4
+ 5121 at_1                       AT-1          AT-1                    USSR       TD       2
+ 5137 pzvib_tiger_ii             Tiger II      PzKpfw VIB Tiger II     Germany    HT       8
+ 5153 m5_stuart                  M5 Stuart     M5 Stuart               USA        LT       4
+ 5169 ch20_type58                Type 58       Type 58                 China      MT       6
+ 5185 amx_13_75                  AMX 13 75     AMX 13 75               France     LT       7
+ 5201 gb03_cruiser_mk_i          Cruiser I     Cruiser Mk. I           UK         LT       2
+ 5377 is_3                       IS-3          IS-3                    USSR       HT       8
+ 5393 vk1602                     Leopard       VK 1602 Leopard         Germany    LT       5
+ 5409 m7_med                     M7            M7                      USA        MT       5
+ 5425 ch22_113                   113           113                     China      HT      10
+ 5457 gb22_comet                 Comet         Comet                   UK         MT       7
+ 5633 su_8                       SU-8          SU-8                    USSR      SPG       5
+ 5649 grille                     Grille        Grille                  Germany   SPG       4
+ 5665 t2_med                     T2 Medium     T2 Medium Tank          USA        MT       2
+ 5697 lorraine40t                Lorraine40t   Lorraine 40 t           France     MT       9
+ 5713 gb24_centurion_mk3         Centurion 7/1 Centurion Mk. 7/1       UK         MT       9
+ 5889 kv_3                       KV-3          KV-3                    USSR       HT       7
+ 5905 wespe                      Wespe         Wespe                   Germany   SPG       3
+ 5921 pershing                   Pershing      M26 Pershing            USA        MT       8
+ 5953 amx38                      AMX 38        AMX 38                  France     LT       3
+ 5969 gb23_centurion             Centurion I   Centurion Mk. I         UK         MT       8
+ 6145 is_4                       IS-4          IS-4                    USSR       HT      10
+ 6161 pzii_luchs                 Luchs         PzKpfw II Luchs         Germany    LT       4
+ 6177 t18                        T18           T18                     USA        TD       2
+ 6209 f10_amx_50b                AMX50B        AMX 50B                 France     HT      10
+ 6225 gb13_fv215b                FV215b        FV215b                  UK         HT      10
+ 6401 su_76                      SU-76         SU-76                   USSR       TD       3
+ 6417 pziii_iv                   PzIII/IV      PzKpfw III/IV           Germany    MT       5
+ 6433 t82                        T82           T82                     USA        TD       3
+ 6465 amx_12t                    AMX12t        AMX 12t                 France     LT       6
+ 6481 gb60_covenanter            Covenanter    Covenanter              UK         LT       4
+ 6657 t_43                       T-43          T-43                    USSR       MT       7
+ 6673 g20_marder_ii              Marder II     Marder II               Germany    TD       3
+ 6721 bdr_g1b                    BDR G1B       BDR G1B                 France     HT       5
+ 6913 gaz_74b                    SU-85B        SU-85B                  USSR       TD       4
+ 6929 maus                       Maus          Maus                    Germany    HT      10
+ 6945 m10_wolverine              Wolverine     M10 Wolverine           USA        TD       5
+ 6977 amx_m4_1945                AMX M4 45     AMX M4(1945)            France     HT       7
+ 6993 gb69_cruiser_mk_ii         Cruiser II    Cruiser Mk. II          UK         LT       3
+ 7169 is_7                       IS-7          IS-7                    USSR       HT      10
+ 7185 vk3001p                    VK3001P       VK 3001 (P)             Germany    MT       6
+ 7201 m36_slagger                Jackson       M36 Jackson             USA        TD       6
+ 7233 lorraine155_50             Lor.155 50    Lorraine155 50          France    SPG       6
+ 7249 gb70_fv4202_105            FV4202        FV4202                  UK         MT      10
+ 7425 isu_152                    ISU-152       ISU-152                 USSR       TD       8
+ 7441 vk4502p                    VK4502P       VK 4502 (P) Ausf. B     Germany    HT       9
+ 7457 m40m43                     M40/M43       M40/M43                 USA       SPG       7
+ 7489 lorraine155_51             Lor.155 51    Lorraine155 51          France    SPG       7
+ 7505 gb59_cruiser_mk_iv         Cruiser IV    Cruiser Mk. IV          UK         LT       3
+ 7681 su_26                      SU-26         SU-26                   USSR      SPG       3
+ 7697 ferdinand                  Ferdinand     Ferdinand               Germany    TD       8
+ 7713 t40                        T40           T40                     USA        TD       4
+ 7745 renaultft_ac               Ren.FT AC     RenaultFT AC            France     TD       2
+ 7761 gb58_cruiser_mk_iii        Cruiser III   Cruiser Mk. III         UK         LT       2
+ 7937 t_54                       T-54          T-54                    USSR       MT       9
+ 7953 jagdtiger                  Jagdtiger     Jagdtiger               Germany    TD       9
+ 7969 m12                        M12           M12                     USA       SPG       6
+ 8017 gb42_valentine_at          Valentine AT  Valentine AT            UK         TD       3
+ 8193 object_704                 Obj. 704      Object 704              USSR       TD       9
+ 8209 pz38_na                    Pz38nA        PzKpfw 38 nA            Germany    LT       4
+ 8225 t28                        T28           T28                     USA        TD       8
+ 8257 renaultue57                Ren.UE57      Renault UE 57           France     TD       3
+ 8273 gb39_universal_carrierqf2  UC 2-pdr      Universal Carrier 2-pdr UK         TD       2
+ 8449 object_212                 Obj. 212      Object 212              USSR      SPG       7
+ 8465 panther_ii                 Panther II    Panther II              Germany    MT       8
+ 8481 t92                        T92           T92                     USA       SPG       8
+ 8529 gb72_at15                  AT 15         AT 15                   UK         TD       8
+ 8705 object_261                 Obj. 261      Object 261              USSR      SPG       8
+ 8721 g_tiger                    GwTiger       GW Tiger                Germany   SPG       7
+ 8737 t95                        T95           T95                     USA        TD       9
+ 8785 gb73_at2                   AT 2          AT 2                    UK         TD       5
+ 8961 kv_13                      KV-13         KV-13                   USSR       MT       7
+ 8977 g_panther                  GwPanther     GW Panther              Germany   SPG       6
+ 8993 m46_patton                 M46 Patton    M46 Patton              USA        MT       9
+ 9041 gb57_alecto                Alecto        Alecto                  UK         TD       4
+ 9217 object252                  IS-6          IS-6                    USSR       HT       8
+ 9233 g_e                        GwTyp E       GW Typ E                Germany   SPG       8
+ 9249 t25_at                     T25 AT        T25 AT                  USA        TD       7
+ 9297 gb48_fv215b_183            FV215b 183    FV215b (183)            UK         TD      10
+ 9473 t_50                       T-50          T-50                    USSR       LT       4
+ 9489 e_100                      E-100         E-100                   Germany    HT      10
+ 9505 m103                       M103          M103                    USA        HT       9
+ 9553 gb74_at8                   AT 8          AT 8                    UK         TD       6
+ 9729 t_50_2                     T-50-2        T-50-2                  USSR       LT       5
+ 9745 e_75                       E-75          E-75                    Germany    HT       9
+ 9761 m24_chaffee                Chaffee       M24 Chaffee             USA        LT       5
+ 9793 somua_sau_40               SAu-40        Somua SAu-40            France     TD       4
+ 9809 gb40_gun_carrier_churchill Churchill GC  Churchill Gun Carrier   UK         TD       6
+ 9985 su_101                     SU-101        SU-101                  USSR       TD       8
+10001 vk2801                     VK2801        VK 2801                 Germany    LT       6
+10017 sherman_jumbo              M4A3E2        M4A3E2 Sherman Jumbo    USA        MT       6
+10049 s_35ca                     S-35CA        S-35 CA                 France     TD       5
+10065 gb75_at7                   AT 7          AT 7                    UK         TD       7
+10241 su100m1                    SU-100M1      SU-100M1                USSR       TD       7
+10257 e_50                       E-50          E-50                    Germany    MT       9
+10273 m8a1                       M8A1          M8A1                    USA        TD       4
+10497 kv2                        KV-2          KV-2                    USSR       HT       6
+10513 vk4502a                    VK4502A       VK 4502 (P) Ausf. A     Germany    HT       8
+10529 t49                        T49           T49                     USA        TD       5
+10753 st_i                       ST-I          ST-I                    USSR       HT       9
+10769 pzvi_tiger_p               Tiger P       PzKpfw VI Tiger (P)     Germany    HT       7
+10785 t110                       T110E5        T110E5                  USA        HT      10
+10817 amx_ac_mle1946             AC Mle.46     AMX AC Mle. 1946        France     TD       7
+11009 kv4                        KV-4          KV-4                    USSR       HT       8
+11041 t25_2                      T25/2         T25/2                   USA        TD       7
+11073 amx50_foch                 AMX50Foch     AMX 50 Foch             France     TD       9
+11265 t150                       T-150         T-150                   USSR       HT       6
+11297 t28_prototype              T28 Prot.     T28 Prototype           USA        TD       8
+11521 is8                        IS-8          IS-8                    USSR       HT       9
+11537 jagdpantherii              JgPanthII     Jagdpanther II          Germany    TD       8
+11553 m18_hellcat                Hellcat       M18 Hellcat             USA        TD       6
+11585 arl_v39                    ARL V39       ARL V39                 France     TD       6
+11777 kv1                        KV-1          KV-1                    USSR       HT       5
+11841 bat_chatillon155           B.Chat.155    Bat Chatillon 155       France    SPG       8
+12033 su122_54                   SU-122-54     SU-122-54               USSR       TD       9
+12049 jagdpz_e100                JgPzE100      JagdPz E-100            Germany    TD      10
+12097 amx_ac_mle1948             AC Mle.48     AMX AC Mle. 1948        France     TD       8
+12305 e50_ausf_m                 E-50M         E-50 Ausf. M            Germany    MT      10
+12561 pzi_ausf_c                 Pz. I C       Pz.Kpfw. I Ausf. C      Germany    LT       3
+12817 pzi                        Pz. I         Pz.Kpfw. I              Germany    LT       2
+13073 pz_ii_ausfg                Pz. II G      Pz.Kpfw. II Ausf. G     Germany    LT       3
+13089 t110e4                     T110E4        T110E4                  USA        TD      10
+13345 t26_e4_superpershing       T26E4         T26E4 Super Pershing    USA        MT       8
+13569 object268                  Obj. 268      Object 268              USSR       TD      10
+13825 t62a                       T-62A         T-62A                   USSR       MT      10
+13857 t110e3                     T110E3        T110E3                  USA        TD      10
+13889 amx_50fosh_155             AMX50F155     AMX-50 Foch (155)       France     TD      10
+14113 m48a1                      M48 Patton    M48A1 Patton            USA        MT      10
+14145 elc_amx                    ELC AMX       ELC AMX                 France     LT       5
+14337 object263                  Obj. 263      Object 263              USSR       TD      10
+14625 t69                        T69           T69                     USA        MT       8
+14881 t57_58                     T57 Heavy     T57 Heavy Tank          USA        HT      10
+15137 t21                        T21           T21                     USA        LT       6
+15393 t54e1                      T54E1         T54E1                   USA        MT       9
+15649 t71                        T71           T71                     USA        LT       7
+51201 kv_220                     KV-220 T      KV-220 Beta-Test        USSR       HT       5
+51457 matilda_ii_ll              Matilda IV    Matilda IV              USSR       MT       5
+51473 pzv_pziv                   PzV/IV        PzKpfw V-IV             Germany    MT       6
+51489 t2_lt                      T2 Light      T2 Light Tank           USA        LT       2
+51713 churchill_ll               Churchill III Churchill III           USSR       HT       5
+51729 pzii_j                     PzII J        PzKpfw II Ausf. J       Germany    LT       3
+51745 ram_ii                     Ram II        Ram II                  USA        MT       5
+51985 s35_captured               Pz S35        PzKpfw S35 739 (f)      Germany    MT       3
+52001 mtls_1g14                  MTLS-1G14     MTLS-1G14               USA        LT       3
+52225 bt_sv                      BT-SV         BT-SV                   USSR       LT       3
+52241 b_1bis_captured            Pz B2         PzKpfw B2 740 (f)       Germany    HT       4
+52257 m4a2e4                     M4A2E4        M4A2E4 Sherman          USA        MT       5
+52481 valentine_ll               Valentine II  Valentine II            USSR       LT       4
+52497 h39_captured               Pz38H735f     PzKpfw 38H735 (f)       Germany    LT       2
+52513 m6a2e1                     M6A2E1        M6A2E1                  USA        HT       8
+52561 gb32_tortoise              Tortoise      Tortoise                UK         TD       9
+52737 m3_stuart_ll               M3 light      M3 light                USSR       LT       3
+52769 m22_locust                 Locust        M22 Locust              USA        LT       3
+52993 a_32                       A-32          A-32                    USSR       MT       4
+53249 kv_5                       KV-5          KV-5                    USSR       HT       8
+53505 t_127                      T-127         T-127                   USSR       LT       3
+53537 t1_e6                      T1E6          T1E6                    USA        LT       2
+53585 gb68_matilda_black_prince  Matilda BP    Matilda Black Prince    UK         MT       5
+53761 su_85i                     SU-85I        SU-85I                  USSR       TD       5
+53841 gb63_tog_ii                TOG II*       TOG II*                 UK         HT       6
+54017 kv_220_action              KV-220        KV-220                  USSR       HT       5
+54033 pzv_pziv_ausf_alfa         PzV/IV A      PzKpfw V-IV Alpha       Germany    MT       6
+54049 sexton_i                   Sexton I      Sexton I                USA       SPG       3
+54097 gb71_at_15a                AT 15A        AT 15A                  UK         TD       7
+54289 lowe                       Loewe         Loewe                   Germany    HT       8
+54305 m4a3e8_sherman_training    M4A3E8        M4A3E8 Sherman          USA        MT       6
+54529 tetrarch_ll                Tetrarch      Tetrarch                USSR       LT       2
+54545 t_25                       T-25          T-25                    Germany    MT       5
+54785 su100y                     SU-100Y       SU-100Y                 USSR       TD       6
+54801 t_15                       T-15          T-15                    Germany    LT       3
+55057 pziv_hydro                 PzIV Hyd.     PzKpfw IV Hydraulic     Germany    MT       5
+55297 su122_44                   SU-122-44     SU-122-44               USSR       TD       7
+55313 jagdtiger_sdkfz_185        JgTig.8,8 cm  8,8 cm PaK 43 Jagdtiger Germany    TD       8
+56321 t_34_85_training           T-34-85       T-34-85                 USSR       MT       6
+57105 dickermax                  D. Max        Dicker Max              Germany    TD       6
+57361 pziv_schmalturm            PzIV S.       PzKpfw IV Schmalturm    Germany    MT       6
+57617 panther_m10                PzV/M10       Panther-M10             Germany    MT       7
+57873 pziii_training             PzIII         PzKpfw III              Germany    MT       4
+58129 pzvib_tiger_ii_training    Tiger II      PzKpfw VIB Tiger II     Germany    HT       5
+58385 pzv_training               Panther       PzKpfw V Panther        Germany    MT       5
+64065 fcm_50t                    FCM 50 t      FCM 50 t                France     HT       8
+64305 ch04_t34_1_training        T-34-1        T-34-1                  China      MT       7
+65281 observer                   Observer      Observer                USSR       LT       1

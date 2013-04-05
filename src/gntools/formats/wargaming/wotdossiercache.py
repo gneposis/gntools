@@ -32,15 +32,21 @@ from gntools.core.path import mloc
 
 import gntools.formats
 import gntools.formats.dic as dic
+import gntools.formats.lkt as lkt
 import gntools.formats.sdf as sdf
+
+from gntools.formats.wargaming.phalynxjson import LKT_LOCATION, TANKS_LKT
 
 ENCODING = 'latin_1'
 # valid encodings: cp1256, latin_1, iso8859_9
 
 VERSION_STRUCT = '=h'
 
-TANKS = 'data/dicts/tanks.dic'
-tanks = dic.File(mloc(__file__, relpath=TANKS)).obj
+tanks_data = dict()
+for tank in lkt.File(mloc(__file__, LKT_LOCATION, TANKS_LKT)).obj:
+    key = tank['key']
+    del tank['key']
+    tanks_data[key] = tank
 
 SDF_DIR = 'data/structs'
 # Note: SDF_DIR must contain sdf files named as version integers,
@@ -51,7 +57,7 @@ def get_structs(sdf_dir=SDF_DIR):
     Returns dictionary where keys are version integers and values are the
     corresponding structure definitions.
     """
-    abs_sdf_dir = mloc(__file__, relpath=sdf_dir)
+    abs_sdf_dir = mloc(__file__, sdf_dir)
     keys = [int(f.rstrip('.sdf')) for f in os.listdir(abs_sdf_dir)]
     values = [sdf.File('{}/{}.sdf'.format(abs_sdf_dir, v)) for v in keys]
     return dict(zip(keys, values))
@@ -90,7 +96,7 @@ class File(gntools.formats.File):
 
             values.append((tstoiso(rawval[0]), TankData(tank_data)))
 
-        self.obj = dict(zip(keys, values))
+        self.obj = MyTanks(zip(keys, values))
 
     def read(self):
         with open(self.fullpath, mode='rb') as f:
@@ -118,7 +124,7 @@ def tankfromwgkey(wargaming_key):
         that we use data/dicts/tanks.dic which contains type_comp_descr-s
         as keys and tank names as values.
     """
-    return tanks[wargaming_key[1]]
+    return wargaming_key[1]
 
 def _base32name(pure_file_name):
     """
@@ -135,6 +141,23 @@ def _base32name(pure_file_name):
     if base32name:
         return base32name.split(';')
 
+
+class MyTanks(dict):
+
+    def get_by_tit(self, string, short=False, strict=True):
+        result = list()
+        for tank in self:
+            if short:
+                tit = tanks_data[tank]['shorttitle']
+            else:
+                tit = tanks_data[tank]['title']
+
+            if strict and string.lower() == tit.lower():
+                return self[tank]
+            elif not strict and string.lower() in tit.lower():
+                result.append((tit, self[tank]))
+
+        return result                
 
 class TankData(dict):
     def __init__(self, *args, **kwargs):

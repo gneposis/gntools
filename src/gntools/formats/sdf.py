@@ -71,7 +71,7 @@ class File(gntools.formats.File):
     def __init__(self, path, separator=SEPARATOR):
         super().__init__(path)
 
-        fullraw = self.read().splitlines()
+        fullraw = self.load().splitlines()
 
         self.type_ = fullraw[0]
         raw = fullraw[1:]
@@ -88,7 +88,7 @@ class File(gntools.formats.File):
             self.obj.append(row_data)
 
 
-    def read(self):
+    def load(self):
         with open(self.fullpath) as f:
 
             format_def_char = f.read(1)

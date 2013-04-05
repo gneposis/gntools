@@ -23,18 +23,13 @@ Module for path manipulation.
 # ------------------------------------------------------------------------
 import os
 
-def mloc(a__file__, relpath=None):
+def mloc(*args):
     """
-    Returns the location of a module by its __file__ if no relpath
-    argument. Else returns the path of relpath.
+    Returns the path defined by args relative to the first argument's
+    dirname. It uses os.join to get to the final path.
 
     Useful to access relative paths from an imported module.
-    """ 
-    if not relpath:
-        return os.path.dirname(a__file__)
-    else:
-        return '{}{}{}'.format(
-                               os.path.dirname(a__file__),
-                               os.path.sep,
-                               relpath,
-                               )
+    """
+    arguments = [os.path.normpath(p) for p in args]
+    arguments[0] = os.path.dirname(arguments[0])
+    return os.path.join(*arguments)

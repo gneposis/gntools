@@ -16,7 +16,7 @@ Usage: File(lkt_file)
       - After this, data.
 """
 
-# dic.py by Adam Szieberth (2013)
+# lkt.py by Adam Szieberth (2013)
 # Python 3.3.0 (Arch Linux)
 
 # Full license text:
@@ -38,8 +38,11 @@ Usage: File(lkt_file)
 import gntools.formats
 
 from gntools.core.collections import DictList
-from gntools.core.types import deftype
+from gntools.core.types import deftype, str2type
 
+RULE_TYPES = ('-', '=')
+
+SEPARATOR = '\t'
 
 def validation(obj, header=None):
     """Does input object validation and returns number of columns."""
@@ -150,7 +153,9 @@ def get_col_classes(obj, columns=None, strict=True):
     return class_names
 
 def add_row(rowobj, widths=None, indent=None, space=1):
-
+    """
+    Returns a row string based on a row object which is usually a list.
+    """
     format_string_normal = '{}' + ' '*space
     format_string_last = '{}\n'
 
@@ -170,7 +175,6 @@ def add_row(rowobj, widths=None, indent=None, space=1):
         except:
             width = len(str(e[1]))
 
-#        print(ind,width)
         if ind == 'c':
             result += format_string.format(str(e[1]).center(width))
         else:
@@ -213,143 +217,43 @@ class FromObj:
         return result.rstrip('\n')
 
 
+class File(gntools.formats.File):
+    def __init__(self, path, loadit=True):
+        super().__init__(path)
+        if loadit is True:
+            self.obj = self.load()
+        else:
+            self.obj = DictList()
 
+    def load(self):
+        with open(self.fullpath) as f:
+            lkt_d = f.read().splitlines()
 
+        columns = list()
+        prev_ch = ' '
+        for i, ch in enumerate(lkt_d[2]):
+            if ch == '-' and prev_ch == ' ':
+                columns.append([i])
+            elif ch == ' ' and prev_ch == '-':
+                columns[-1].append(i)
+            prev_ch = ch
+        columns[-1].append(None)
 
+        for i in columns:
+            print(i[0])
 
+        headers = [lkt_d[0][i[0]:i[1]].strip() for i in columns]
+        types = [str2type(lkt_d[1][i[0]:i[1]].strip()) for i in columns]
 
+        result = DictList()
 
-#def import_(object, header=None, indent=None, strict=True, space=1):
-#    """
-#    Imports an object to lkt if possible.
-#
-#      - indent should be a string of the following chars: l, c, r. These
-#        three represents left, center and right justification. For example
-#        for a three column LKT the following indent is valid: indent = 'rll' 
-#
-#    Compatible classes:
-#      - gntools.collections.ListList
-#    """
-#
-#    format_string_normal = '{}' + ' '*space
-#    format_string_last = '{}\n'
-#
-#    # Initial validation - - - - - - - - - - - - - - - - - - - - - - - - -
-#    itemcount = None
-#    for i in object:
-#        if not isinstance(i, list) and not isinstance(i, tuple):
-#            raise IncompatibleParentClassError(
-#                'Class of item is not list or tuple: {}'
-#                .format(i.__class__.__name__))
-#        if itemcount is None:
-#            itemcount = len(i)
-#        elif itemcount != len(i):
-#            raise VariableItemCountError(
-#                'Current item length ({}) differs from previous ({}).'
-#                .format(len(i), itemcount))
-#
-#    if header and not isinstance(header, list) and (
-#                                           not isinstance(header, tuple)):
-#        raise IncompatibleParentClassError(
-#            'Class of header is not list or tuple: {}'
-#            .format(header.__class__.__name__))
-#    elif header and len(header) != itemcount:
-#            raise VariableItemCountError(
-#                'Length of header ({}) differs from item length ({}).'
-#                .format(len(header), itemcount))        
-#
-#    if indent and not isinstance(indent, str):
-#        raise IncompatibleParentClassError(
-#            'Class of indent is not string: {}'
-#            .format(indent.__class__.__name__))
-#    elif indent and len(indent) != itemcount:
-#            raise VariableItemCountError(
-#                'Length of indent ({}) differs from item length ({}).'
-#                .format(len(indent), itemcount))
-#    elif indent:
-#            for i in indent:
-#                if i not in VALID_JUSTS:
-#                    raise InvalidJustificationDeclarationError(
-#                    'Justification declaration {} is not valid in {}.'
-#                    .format(i, VALID_JUSTS))
-#    else:
-#        indent = 'l'*itemcount
-#    # End of initial validation  - - - - - - - - - - - - - - - - - - - - -
-#
-#    max_lengths = [None for i in range(itemcount)]
-#    class_names = [None for i in range(itemcount)]
-#
-#    for i in object:
-#        for e in enumerate(i):
-#
-#            j = e[0]
-#            item = e[1]
-#            max_length = max_lengths[j]
-#            class_name = class_names[j]
-#
-#            if max_length is None:
-#                max_lengths[j] = len(str(item))
-#            else:
-#                max_lengths[j] = max(max_length, len(str(item)))
-#
-#            if class_name is None:
-#                class_names[j] = item.__class__.__name__
-#            elif class_name != item.__class__.__name__ and strict:
-#                raise ClassNotIdenticalError(
-#                    'Class ({}) differs from the one expected ({}).'
-#                    .format(item.__class__.__name__, class_name))
-#            elif class_name != item.__class__.__name__ and not strict:
-#                class_names[j] = 'str'
-#
-#    if header:
-#        for e in enumerate(header):
-#            max_length = max_lengths[e[0]]
-#            max_lengths[e[0]] = max(max_length, len(str(e[1])))
-#
-#    for e in enumerate(class_names):
-#        max_length = max_lengths[e[0]]
-#        max_lengths[e[0]] = max(max_length, len(str(e[1])))
-#
-#    # Function to add rows to result - - - - - - - - - - - - - - - - - - - 
-#    def add_row(source):
-#        result = ''
-#        for e in enumerate(source):
-#
-#            if e[0] < len(source) - 1:
-#                format_string = format_string_normal
-#            else:
-#                format_string = format_string_last
-#
-#            if indent[e[0]] == 'c':
-#                result += format_string.format(str(e[1])
-#                                               .center(max_lengths[e[0]]))
-#            else:
-#                indentstr = '{}just'.format(indent[e[0]])
-#                result += format_string.format(
-#                                               getattr(
-#                                                       str(e[1]),
-#                                                       indentstr
-#                                                       )
-#                                                       (max_lengths[e[0]])
-#                                               )
-#        return result
-#    # End of function  - - - - - - - - - - - - - - - - - - - - - - - - - -
-#
-#    result = ''
-#
-#    if header:
-#            result += add_row(header)
-#
-#    result += add_row(class_names)
-#
-#    for i in max_lengths[:-1]:
-#        result += format_string_normal.format('-'*i)
-#    result += format_string_last.format('-'*max_lengths[-1])
-#
-#    for i in object:
-#        result += add_row(i)
-#
-#    return result.rstrip('\n')
+        for row, rcnt in enumerate(lkt_d):
+            if row > 2:
+                result.append({headers[e[0]]: 
+                               types[e[0]](rcnt[e[1][0]:e[1][1]].strip())
+                               for e in enumerate(columns)})
+
+        return result
 
 
 

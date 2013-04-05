@@ -33,7 +33,7 @@ import time
 # TODO: plain text fingerprints / sxntax highlighting / comparing
 # Note: http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/
 
-from gntools.formats.readers.hashcalc import md5f as md5sum
+from gntools.core.hashcalc import md5f as md5sum
 import gntools.formats
 
 CHECK_FREQUENCY=25

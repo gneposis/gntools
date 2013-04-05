@@ -61,8 +61,8 @@ TANK_TABLE_COLS = (
 TANK_TABLE_INDENT = 'rllllcr'
 
 
-country = lst.File(mloc(__file__, '{}/{}'.format(LIST_LOCATION, COUNTRY)))
-tanktype = lst.File(mloc(__file__, '{}/{}'.format(LIST_LOCATION, TYPE)))
+country = lst.File(mloc(__file__, LIST_LOCATION, COUNTRY))
+tanktype = lst.File(mloc(__file__, LIST_LOCATION, TYPE))
 
 
 def filter_uppercased(string):
@@ -113,7 +113,7 @@ class Tank(dict):
 class Tanks(DictList):
     """List of Tanks."""
     def __init__(self, itemclass=Tank):
-        jsonloc = mloc(__file__, '{}/{}'.format(JSON_LOCATION, TANKS))
+        jsonloc = mloc(__file__, JSON_LOCATION, TANKS)
         with open(jsonloc) as json_f:
             jsonstring = json_f.read()
         jsondictlist = json.loads(jsonstring)
@@ -127,7 +127,7 @@ def export_tanks(writeout=False):
     report = Tanks().report(TANK_TABLE_COLS)
     result = lkt.FromObj(report)(indent=TANK_TABLE_INDENT)
     if writeout:
-        with open(mloc(__file__, '{}/{}'.format(LKT_LOCATION, TANKS_LKT)),
+        with open(mloc(__file__, LKT_LOCATION, TANKS_LKT),
                   mode='w') as tanks_lkt:
             tanks_lkt.write(result)
     return result

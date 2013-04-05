@@ -134,7 +134,7 @@ class DictList(ListOfClass):
                     match = False
 
             if match:
-                result.append(item)
+                result.append(i)
         return result
 
     def report(self, *args, itemclass=list):
@@ -237,6 +237,45 @@ class NestedDict(dict):
 
         if len(keys_) > 1:
             return self._setnesteditem(next_args, current_dict[first_key])
+
+
+class ItemClock:
+    def __init__(self, items, start_ind=0):
+        self.items = items
+        self.i = start_ind
+
+    def __eq__(self, string):
+        if repr(self) == string:
+            return True
+        else:
+            return False
+
+    def __iadd__(self, count):
+        current_i = self.i
+        self.i = (current_i + count) % len(self.items)
+        return self
+
+    def __isub__(self, count):
+        current_i = self.i
+        self.i = (current_i - count) % len(self.items)
+        return self
+
+    def __repr__(self):
+        return str(self.items[self.i])
+
+    def reset(self):
+        self.i = 0
+
+    def walk(self):
+        self.__iadd__(1)
+
+class NamedList(list):
+    def __init__(self, name):
+        super().__init__()
+        self.name = name
+
+    def __repr__(self):
+        return ('{}: {}'.format(self.name, super().__repr__()))
 
 
 if __name__ == '__main__':

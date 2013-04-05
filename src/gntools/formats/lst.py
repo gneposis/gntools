@@ -38,11 +38,11 @@ class File(gntools.formats.File):
     def __init__(self, path):
         super().__init__(path)
 
-        type_, data = self.read()
+        type_, data = self.load()
 
         self.obj = [d.strip() for d in data.splitlines()] 
 
-    def read(self):
+    def load(self):
         with open(self.fullpath) as f:
             type_ = str2type(f.readline().strip())
             r = f.read()

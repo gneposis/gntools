@@ -4,7 +4,7 @@ Usage: File(dict_file)
        File(dict_file, types=(str, int))
           - Keys are strings, values are integers
        File(dict_file, separator=';')
-          - Separator is ';' instead of tab. 
+          - Separator is ';' instead of tab.
 
     DIC file format:
       - The first line contains the types of the keys and values separated
@@ -62,35 +62,35 @@ SEPARATOR = '\t'
 class TypeNotValidError(Exception): pass
 
 class File(gntools.formats.File):
-    def __init__(self, path, separator=SEPARATOR):
+    def __init__(self, path, separator=SEPARATOR, loadit=True):
         super().__init__(path)
-        self.version = None
-
-        types, data = self.read()
-
         self.obj = dict()
-     
-        for row in data.splitlines():
-            key_, value_ = row.split(SEPARATOR)
-     
-            if not types[0]:
-                key = deftype(key_.strip())
-            else:
-                key = types[0](key_.strip())
-            if not types[1]:
-                value = deftype(value_)
-            else:
-                value = types[1](value_)
-     
-            self.obj.update({key: value})
+        if loadit is True:
+            types, data = self.load()
+        upd(self.obj, data, types=types, separator=separator)
 
-
-    def read(self):
+    def load(self):
         with open(self.fullpath) as f:
             keytype, valuetype = [str2type(t.strip())
                                    for t in f.readline().split(SEPARATOR)]
             r = f.read()
         return (keytype, valuetype), r
+
+def upd(dicobj, data, types=(None, None), separator=SEPARATOR):
+    """Updates a DIC object with compatible data."""
+    for row in data.splitlines():
+        key_, value_ = row.split(SEPARATOR)
+
+        if not types[0]:
+            key = deftype(key_.strip())
+        else:
+            key = types[0](key_.strip())
+        if not types[1]:
+            value = deftype(value_)
+        else:
+            value = types[1](value_)
+
+        dicobj.update({key: value})
 
 if __name__ == '__main__':
     pass

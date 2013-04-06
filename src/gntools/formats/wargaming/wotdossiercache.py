@@ -23,11 +23,12 @@ Usage: File(dossier_cache_file)
 # 0. You just DO WHAT THE FUCK YOU WANT TO.
 # ------------------------------------------------------------------------
 import base64
+from datetime import datetime
 import os
 import pickle
 import struct
 
-from gntools.core.datetime import tstoiso
+from gntools.core.iterable import split_by_lenlist
 from gntools.core.path import mloc
 
 import gntools.formats
@@ -52,6 +53,11 @@ SDF_DIR = 'data/structs'
 # Note: SDF_DIR must contain sdf files named as version integers,
 #       e.g. 26.sdf
 
+STRFORMAT = '='
+STRNUMFRAGS = 'h'
+STRFRAGS = 'h'
+STRTANKS = 'l'
+
 def get_structs(sdf_dir=SDF_DIR):
     """
     Returns dictionary where keys are version integers and values are the
@@ -63,6 +69,8 @@ def get_structs(sdf_dir=SDF_DIR):
     return dict(zip(keys, values))
 
 class File(gntools.formats.File):
+    class StructureDataDontMatchError(Exception): pass
+
     def __init__(self, path):
         super().__init__(path)
         self.version = None
@@ -75,7 +83,7 @@ class File(gntools.formats.File):
         self.rawobj = self.read()
 
         self.version = self.rawobj[0]
-        
+
         keys = list()
         values = list()
         structs = get_structs()
@@ -87,21 +95,49 @@ class File(gntools.formats.File):
 
             rawval = self.rawobj[1][key]
             rawvaldata = rawval[1].encode(ENCODING)
-            
+
             version = struct.unpack(VERSION_STRUCT,
                           rawvaldata[:struct.calcsize(VERSION_STRUCT)])[0]
 
             tank_sdf = structs[version]
             tank_data = tank_sdf.get_dict(rawvaldata, force_length=False)
 
-            values.append((tstoiso(rawval[0]), TankData(tank_data)))
+            fragspos = tank_data['fragspos']
+            del tank_data['fragspos']
 
-        self.obj = MyTanks(zip(keys, values))
+            values.append((
+                           datetime.fromtimestamp(rawval[0]),
+                           TankData(tank_data),
+                           get_frags(rawvaldata[fragspos:]),
+                           ))
+
+        self.obj = Tanks(zip(keys, values))
 
     def read(self):
         with open(self.fullpath, mode='rb') as f:
             r = pickle.load(f, encoding=ENCODING)
         return r
+
+def get_frags(data):
+    count_format = STRFORMAT + STRNUMFRAGS
+    count_len = struct.calcsize(count_format)
+
+    count = struct.unpack(count_format, data[:count_len])[0]
+
+    fragged_tanks_format = STRFORMAT + STRTANKS*count
+    frags_count_format = STRFORMAT + STRFRAGS*count
+
+    tanks_data_len = struct.calcsize(fragged_tanks_format)
+    frags_data_len = struct.calcsize(frags_count_format)
+
+    lengths = [count_len, tanks_data_len, frags_data_len]
+    sliced_data = [d for d in split_by_lenlist(data, lengths)]
+
+    tuple_tanks = struct.unpack(fragged_tanks_format, sliced_data[1])
+    tuple_frags = struct.unpack(frags_count_format, sliced_data[2])
+
+    return Tanks(zip(tuple_tanks, tuple_frags))
+
 
 def tankfromwgkey(wargaming_key):
     # The docstring informations are based on Marius (Phalynx) Czyz's
@@ -109,7 +145,7 @@ def tankfromwgkey(wargaming_key):
     # Marius, if you disagree with my licensing, please contact me!
     """
     Returns tank name from Wargaming.net key.
-    
+
     The Wargaming.net key is a two length tuple:
       - The first item is the dossier_type integer. Values listed by index
             in data/lists/dossiertype.lst.
@@ -142,7 +178,7 @@ def _base32name(pure_file_name):
         return base32name.split(';')
 
 
-class MyTanks(dict):
+class Tanks(dict):
 
     def get_by_tit(self, string, short=False, strict=True):
         result = list()
@@ -157,7 +193,7 @@ class MyTanks(dict):
             elif not strict and string.lower() in tit.lower():
                 result.append((tit, self[tank]))
 
-        return result                
+        return result
 
 class TankData(dict):
     def __init__(self, *args, **kwargs):

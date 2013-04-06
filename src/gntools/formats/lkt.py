@@ -239,9 +239,6 @@ class File(gntools.formats.File):
             prev_ch = ch
         columns[-1].append(None)
 
-        for i in columns:
-            print(i[0])
-
         headers = [lkt_d[0][i[0]:i[1]].strip() for i in columns]
         types = [str2type(lkt_d[1][i[0]:i[1]].strip()) for i in columns]
 
@@ -254,16 +251,6 @@ class File(gntools.formats.File):
                                for e in enumerate(columns)})
 
         return result
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':

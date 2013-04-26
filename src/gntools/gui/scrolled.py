@@ -23,7 +23,7 @@ class List(tkinter.Frame):
                        fill=tkinter.BOTH)
 
 
-    def make_options(self, options):
+    def make_options(self, options, autosort=True):
         self.list.delete(0, tkinter.END)
         pos = 0
         for label in options:

@@ -2,17 +2,18 @@ import tkinter
 
 # code from Mark Lutz -- Programming Python (4th edition)
 class List(tkinter.Frame):
-    def __init__(self, options, parent=None):
-        super().__init__(parent)
-        self.make_widgets()
-        self.make_options(options)
+    def __init__(self, parent, height=6):
+        tkinter.Frame.__init__(self, parent)
+        self.make_widgets(height)
 
-    def make_widgets(self, selectmode=tkinter.EXTENDED):
+    def make_widgets(self, height, selectmode=tkinter.EXTENDED):
         sbar = tkinter.Scrollbar(self)
         self.list = tkinter.Listbox(self,
                                     relief=tkinter.SUNKEN,
                                     selectmode=selectmode,
                                     exportselection=0,
+                                    activestyle='none',
+                                    height=height,
                                     width=0)
         sbar.config(command=self.list.yview)
         self.list.config(yscrollcommand=sbar.set)

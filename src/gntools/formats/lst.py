@@ -46,7 +46,7 @@ class File(gntools.formats.File):
         with open(self.fullpath) as f:
             type_ = str2type(f.readline().strip())
             r = f.read()
-        return type, r
+        return type_, r
 
     def __getitem__(self, i):
         return self.obj[i]

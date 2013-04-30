@@ -1,5 +1,7 @@
 import re
 
+import gntools.core.numbers
+
 class OutOfRangeError(ValueError): pass
 class NotIntegerError(ValueError): pass
 class InvalidRomanNumeralError(ValueError): pass
@@ -50,7 +52,8 @@ def to_roman(n):
         raise NotIntegerError('non-integers can not be converted')
     
     if not (0 < n < 4000):
-        raise OutOfRangeError('number out of range (must be less than 4000)')
+        raise OutOfRangeError(
+                           'number out of range (must be less than 4000)')
     
     result = ''
     for numeral, integer in roman_numeral_map:
@@ -66,7 +69,8 @@ def from_roman(s):
     if not s:
         raise InvalidRomanNumeralError('Input can not be blank')
     if not roman_numeral_pattern.search(s):
-        raise InvalidRomanNumeralError('Invalid Roman numeral: {0}'.format(s))
+        raise InvalidRomanNumeralError(
+                                   'Invalid Roman numeral: {0}'.format(s))
 
     result = 0
     index = 0
@@ -76,3 +80,59 @@ def from_roman(s):
             index += len(numeral)
     return result
 
+class RomanNr(gntools.core.numbers.IntNr):
+    def __init__(self, number):
+        if isinstance(number, str):
+            if all(c.upper() in roman_nums for c in number):
+                self.value = from_roman(number)
+            else:
+                super().__init__(number)
+        else:
+            super().__init__(number)
+        to_roman(self.value)           
+
+    def __eq__(self, num):
+        if super().__eq__(num):
+            return True
+        elif is_roman(num) and self.value == from_roman(num):
+            return True
+        return False
+    def __ge__(self, num):
+        if super().__ge__(num):
+            return True
+        elif is_roman(num) and self.value >= from_roman(num):
+            return True
+        return False
+    def __gt__(self, num):
+        if super().__gt__(num):
+            return True
+        elif is_roman(num) and self.value > from_roman(num):
+            return True
+        return False
+    def __le__(self, num):
+        if super().__le__(num):
+            return True
+        elif is_roman(num) and self.value <= from_roman(num):
+            return True
+        return False
+    def __lt__(self, num):
+        if super().__lt__(num):
+            return True
+        elif is_roman(num) and self.value < from_roman(num):
+            return True
+        return False
+    def __ne__(self, num):
+        if super().__ne__(num):
+            return True
+        elif is_roman(num) and self.value != from_roman(num):
+            return True
+        return False
+
+    def __str__(self):
+        return to_roman(self.value)
+
+    def __repr__(self):
+        return "'{}'".format(to_roman(self.value))
+
+    def __hash__(self):
+        return to_roman(self.value).__hash__()

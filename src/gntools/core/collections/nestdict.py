@@ -207,7 +207,9 @@ def merge(*dictobjs,
     Merges one dictionary with one or more another.
 
     By default it mutates the first dictobj. However, if return_new=True
-    then it returns a new dictionary object.
+    then it returns a new dictionary object typed recursively to
+    dict_type. If you want no retypeing, use copy.deepcopy(), and pass the
+    copied dictionary as first argument.
 
     To make mergeing more flexible, you are able to control how extension
     overwriting should be done (both are allowed by default). By setting
@@ -222,7 +224,7 @@ def merge(*dictobjs,
     arguments and expected to return True or False.
     """
     if return_new is True:
-        d = dictobjs[0].copy()
+        d = retype(dictobjs[0], dict_type)
     elif return_new is False:
         d = dictobjs[0]
 

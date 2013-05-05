@@ -148,6 +148,12 @@ class Test635483:
         expected = copy.deepcopy(self.expected)
         expected['new jersey']['test'] = 1
         assert nesteddict == expected
+        nesteddict['new jersey'].lock_close(recursively=False)
+        assert nesteddict['new jersey'].lock == True
+        assert nesteddict['new jersey'].__setitem__(['test'], 2) == False
+        assert nesteddict['new jersey']['mercer county'].__setitem__(
+                                                     ['test'], 1) == True
+        
 
     def test_main(self):
         """

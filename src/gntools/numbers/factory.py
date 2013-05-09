@@ -1,5 +1,5 @@
-from gntools.core.numbers import Nr, IntNr, InvalidNumberError
-from gntools.core.numbers.roman import RomanNr, roman_nums
+from gntools.numbers import Nr, IntNr, InvalidNumberError
+from gntools.numbers.roman import RomanNr, roman_nums
 
 def number(n):
     if isinstance(n, str) and all(c in roman_nums for c in n):

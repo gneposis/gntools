@@ -212,6 +212,30 @@ class Directory(Path):
                     self.changes.add(f)
         return self.changes
 
+    def content(self, r=False):
+        """
+        Generates of the content of the directory. Does it recursively if
+        r=True.
+        """
+        result = list(self.files)
+        # TODO: sorted
+        if r is True:
+            for subdir in self.sub:
+                for i in subdir.content(r=r): 
+                    result.append(i)
+        for i in result:
+            yield i
+
+    def contentbyext(self, r=False):
+        """
+        Returns a dictonary of the content of the directory where keys are
+        file extensions. Does it recursively if r=True.
+        """
+        result = dict()
+        for f in self.content(r=r):
+            ext = os.path.splitext(f.fullpath)[1]
+            result.setdefault(ext, []).append(f)
+        return result
 
 class Detective(threading.Thread):
     def __init__(self,

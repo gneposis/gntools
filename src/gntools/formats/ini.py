@@ -62,6 +62,26 @@ class File(gntools.formats.File):
             io_obj.seek(0)
         return io_obj
 
+def sectionlist(iniobj, section):
+    """
+    Generator which yields sections of ini object based on the order
+    defined in same ini under section named as section argument. Example:
+
+    [Order]
+    1: Hello
+    2: World
+
+    [World]
+    message: World
+
+    [Hello]
+    message: Hello
+
+    In this case sectionlist(iniobj, 'Order') yields ini.section('Hello')
+    first and ini.section('World') after.
+    """
+
+
 
 if __name__ == '__main__':
     pass

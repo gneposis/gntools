@@ -1,6 +1,6 @@
 import re
 
-import gntools.core.numbers
+import gntools.numbers
 
 class OutOfRangeError(ValueError): pass
 class NotIntegerError(ValueError): pass
@@ -80,7 +80,7 @@ def from_roman(s):
             index += len(numeral)
     return result
 
-class RomanNr(gntools.core.numbers.IntNr):
+class RomanNr(gntools.numbers.IntNr):
     def __init__(self, number):
         if isinstance(number, str):
             if all(c.upper() in roman_nums for c in number):

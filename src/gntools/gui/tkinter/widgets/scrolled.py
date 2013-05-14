@@ -8,26 +8,26 @@ class List(tkinter.Frame):
 
     def make_widgets(self, height, selectmode=tkinter.EXTENDED):
         sbar = tkinter.Scrollbar(self)
-        self.list = tkinter.Listbox(self,
+        self.list_ = tkinter.Listbox(self,
                                     relief=tkinter.SUNKEN,
                                     selectmode=selectmode,
                                     exportselection=0,
                                     activestyle='none',
                                     height=height,
                                     width=0)
-        sbar.config(command=self.list.yview)
-        self.list.config(yscrollcommand=sbar.set)
+        sbar.config(command=self.list_.yview)
+        self.list_.config(yscrollcommand=sbar.set)
         sbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
-        self.list.pack(side=tkinter.LEFT, 
+        self.list_.pack(side=tkinter.LEFT, 
                        expand=tkinter.YES, 
                        fill=tkinter.BOTH)
 
 
     def make_options(self, options, autosort=True):
-        self.list.delete(0, tkinter.END)
+        self.list_.delete(0, tkinter.END)
         pos = 0
         for label in options:
-            self.list.insert(pos, label)
+            self.list_.insert(pos, label)
             pos += 1
 
        

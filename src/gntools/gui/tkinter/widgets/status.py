@@ -53,7 +53,6 @@ class StdoutToWidget:
                 self.height = None
         else:
             self.height = height
-        self.start()
 
     def flush(self):
         '''

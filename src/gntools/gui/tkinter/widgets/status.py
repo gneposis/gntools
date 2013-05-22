@@ -102,6 +102,13 @@ class StdoutToWidget:
         '''
         sys.stdout = self.defstdout
 
+    @property
+    def errors(self):
+        return self.defstdout.errors
+
+    @property
+    def encoding(self):
+        return self.defstdout.encoding
 
 # From somwhere on the net
 class ReadOnlyText(tkinter.Text):

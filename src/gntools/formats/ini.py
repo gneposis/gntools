@@ -38,10 +38,10 @@ import gntools.formats
 DEFAULT_ENCODING = 'cp1250'
 
 class File(gntools.formats.File):
-    def __init__(self, path):
+    def __init__(self, path, *args, **kwargs):
         super().__init__(path)
 
-        self.obj = configparser.ConfigParser()
+        self.obj = configparser.ConfigParser(*args, **kwargs)
 
         try:
             data = self.load()
@@ -61,26 +61,6 @@ class File(gntools.formats.File):
         if io_obj.read(1) != '\ufeff':
             io_obj.seek(0)
         return io_obj
-
-def sectionlist(iniobj, section):
-    """
-    Generator which yields sections of ini object based on the order
-    defined in same ini under section named as section argument. Example:
-
-    [Order]
-    1: Hello
-    2: World
-
-    [World]
-    message: World
-
-    [Hello]
-    message: Hello
-
-    In this case sectionlist(iniobj, 'Order') yields ini.section('Hello')
-    first and ini.section('World') after.
-    """
-
 
 
 if __name__ == '__main__':

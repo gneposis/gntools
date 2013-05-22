@@ -2,19 +2,21 @@ import tkinter
 
 # code from Mark Lutz -- Programming Python (4th edition)
 class List(tkinter.Frame):
-    def __init__(self, parent, height=6):
+    def __init__(self, parent, height=6, width=20):
         tkinter.Frame.__init__(self, parent)
-        self.make_widgets(height)
+        self.height=height
+        self.width=width
+        self.make_widgets()
 
-    def make_widgets(self, height, selectmode=tkinter.EXTENDED):
+    def make_widgets(self, selectmode=tkinter.EXTENDED):
         sbar = tkinter.Scrollbar(self)
         self.list_ = tkinter.Listbox(self,
                                     relief=tkinter.SUNKEN,
                                     selectmode=selectmode,
                                     exportselection=0,
                                     activestyle='none',
-                                    height=height,
-                                    width=0)
+                                    height=self.height,
+                                    width=self.width)
         sbar.config(command=self.list_.yview)
         self.list_.config(yscrollcommand=sbar.set)
         sbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
@@ -23,7 +25,7 @@ class List(tkinter.Frame):
                        fill=tkinter.BOTH)
 
 
-    def make_options(self, options, autosort=True):
+    def make_options(self, options):
         self.list_.delete(0, tkinter.END)
         pos = 0
         for label in options:

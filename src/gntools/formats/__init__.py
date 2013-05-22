@@ -58,7 +58,7 @@ def logger(func):
 
 @logger
 def addr(path):
-    return os.path.abspath(path).replace('\\', '/')
+    return os.path.abspath(path)
 
 @logger
 def dirname(path):
@@ -129,15 +129,15 @@ class File(Path):
     @logger
     def lastaccess(self):
         return datetime.datetime.fromtimestamp(
-                              os.stat(self.fullpath).st_atime).isoformat()
+                              os.stat(self.fullpath).st_atime)
     @logger
     def lastmetachange(self):
         return datetime.datetime.fromtimestamp(
-                              os.stat(self.fullpath).st_mtime).isoformat()
+                              os.stat(self.fullpath).st_mtime)
     @logger
     def lastcontentchange(self):
         return datetime.datetime.fromtimestamp(
-                              os.stat(self.fullpath).st_ctime).isoformat()
+                              os.stat(self.fullpath).st_ctime)
 
     # \------------------------------------------------------------------/
 
@@ -212,12 +212,12 @@ class Directory(Path):
                     self.changes.add(f)
         return self.changes
 
-    def content(self, r=False):
+    def content(self, r=False, sort='date', reverse=False):
         """
         Generates of the content of the directory. Does it recursively if
         r=True.
         """
-        result = list(self.files)
+        result = sorted(list(self.files), key=lambda x: x.lastmetachange(), reverse=reverse)
         # TODO: sorted
         if r is True:
             for subdir in self.sub:

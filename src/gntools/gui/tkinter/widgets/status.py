@@ -43,9 +43,11 @@ class StdoutToWidget:
     #       make it a widget decorator (if possible)
     #       height management for Text widget mode
 
-    def __init__(self, widget, height='default'):
+    def __init__(self, widget, height='default', width='default'):
+        self._content = []
         self.defstdout = sys.stdout
         self.widget = widget
+
         if height == 'default':
             try:
                 self.height = widget.cget('height')
@@ -53,6 +55,13 @@ class StdoutToWidget:
                 self.height = None
         else:
             self.height = height
+        if width == 'default':
+            try:
+                self.width = widget.cget('width')
+            except:
+                self.width = None
+        else:
+            self.width = width   
 
     def flush(self):
         '''
@@ -60,34 +69,49 @@ class StdoutToWidget:
         '''
         self.defstdout.flush()
 
-    def write(self, string):
+    def write(self, string, end=None):
         '''
         Frame sys.stdout's write method. This method puts the input
         strings to the widget.
         '''
-        self.defstdout.write(string)
-        if hasattr(self.widget, 'insert') and hasattr(self.widget, 'see'):
-            self._write_to_textwidget(string)
-        else:
-            self._write_to_regularwidget(string)
 
-    def _write_to_regularwidget(self, string):
-        if self.height is None:
-            self.widget.config(text=self.widget.cget('text') + string)
-        else:
-            splitted = self.widget.cget('text').split('\n')
-            new_splitted = string.split('\n')
-            splitted[-1] = splitted[-1] + new_splitted[0]
+        if string is not None:
+            self.defstdout.write(string)
+            #self.defstdout.flush()
             try:
-                splitted.extend(new_splitted[1:])
-            except:
-                pass
-            if len(splitted) > self.height:
-                splitted = splitted[-self.height:]
-            self.widget.config(text='\n'.join(splitted))
+                last_line_last_char = self._content[-1][-1]
+            except IndexError:
+                last_line_last_char = '\n'
+            else:
+                if last_line_last_char == '\n':
+                    self._content[-1] = self._content[-1][:-1]
 
-    def _write_to_textwidget(self, string):
-        self.widget.insert('end', string)
+            if last_line_last_char != '\n' and string.startswith('\r'):
+                self._content[-1] = string[1:]
+            elif last_line_last_char != '\n':
+                self._content[-1] += string
+            elif last_line_last_char == '\n' and string.startswith('\r'):
+                self._content.append(string[1:])
+            else:
+                self._content.append(string)
+
+        if hasattr(self.widget, 'insert') and hasattr(self.widget, 'see'):
+            self._write_to_textwidget()
+        else:
+            self._write_to_regularwidget(end)
+
+    def _write_to_regularwidget(self, end):
+        if self.height is None:
+            self.widget.config(text='\n'.join(self.content))
+        else:
+            if not end:
+                content = '\n'.join(self.content[-self.height:])
+            else:
+                content = '\n'.join(self.content[-self.height+end:end])
+            self.widget.config(text=content)
+
+    def _write_to_textwidget(self):
+        self.widget.insert('end', '\n'.join(self.content))
         self.widget.see('end')        
 
     def start(self):
@@ -101,6 +125,41 @@ class StdoutToWidget:
         Stops retrieving.
         '''
         sys.stdout = self.defstdout
+
+    @property
+    def content(self):
+        c = []
+        for li in self._content:
+            c.extend(li.split('\n'))
+
+        if not self.width:
+            return c
+        else:
+            result = []
+            for li in c:
+                while len(li) > self.width:
+                    result.append(li[:self.width])
+                    li = li[self.width:]
+                result.append(li)
+            return result
+
+        #joined = '\n'.join(self._content)
+        #stripped = joined.strip()
+        #if not self.width:
+        #    return stripped
+        #else:
+        #    splitted_again = stripped.split('\n')
+        #    result = []
+        #    for li in splitted_again:
+        #        while len(li) > self.width:
+        #            result.append(li[:self.width])
+        #            li = li[self.width:]
+        #        result.append(li)
+        #    return result
+
+    @content.setter
+    def content(self, string):
+        self._content = string.split('\n')
 
     @property
     def errors(self):

@@ -5,9 +5,7 @@ class Nr:
         if isinstance(number, str):
             number = floatize(number, comma=comma)
 
-        if isinstance(number, str):
-            self.value = int(number)
-        elif isinstance(number, float):
+        if isinstance(number, float):
             if number == int(number):
                 self.value = int(number)
             else:
@@ -51,8 +49,11 @@ class Nr:
     def __hash__(self):
         return self.value.__hash__()
 
-    def __repr__(self):
+    def __str__(self):
         return str(self.value)
+
+    def __repr__(self):
+        return str(self)
 
 class IntNr(Nr):
     def __init__(self, number):

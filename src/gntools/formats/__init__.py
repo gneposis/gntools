@@ -26,6 +26,7 @@ __all__ = ['wotdossiercache']
 
 import datetime
 import os
+import stat
 import threading
 import time
 
@@ -189,6 +190,16 @@ class File(Path):
             self.report = self._report()
         return self.changes
 
+    @property
+    def is_read_only(self):
+        return os.stat(self.fullpath)[0]
+
+    def read_only_state(self, state):
+        if state is True:
+            os.chmod(self.fullpath, stat.S_IREAD)
+        elif state is False:
+            os.chmod(self.fullpath, stat.S_IWRITE)
+        
 
 class Directory(Path):
     def __init__(self, path, hashing=False):

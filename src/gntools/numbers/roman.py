@@ -131,8 +131,5 @@ class RomanNr(gntools.numbers.IntNr):
     def __str__(self):
         return to_roman(self.value)
 
-    def __repr__(self):
-        return "'{}'".format(to_roman(self.value))
-
     def __hash__(self):
         return to_roman(self.value).__hash__()

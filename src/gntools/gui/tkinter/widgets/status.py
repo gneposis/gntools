@@ -77,7 +77,6 @@ class StdoutToWidget:
 
         if string is not None:
             self.defstdout.write(string)
-            #self.defstdout.flush()
             try:
                 last_line_last_char = self._content[-1][-1]
             except IndexError:
@@ -142,20 +141,6 @@ class StdoutToWidget:
                     li = li[self.width:]
                 result.append(li)
             return result
-
-        #joined = '\n'.join(self._content)
-        #stripped = joined.strip()
-        #if not self.width:
-        #    return stripped
-        #else:
-        #    splitted_again = stripped.split('\n')
-        #    result = []
-        #    for li in splitted_again:
-        #        while len(li) > self.width:
-        #            result.append(li[:self.width])
-        #            li = li[self.width:]
-        #        result.append(li)
-        #    return result
 
     @content.setter
     def content(self, string):
